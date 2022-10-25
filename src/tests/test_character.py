@@ -1,5 +1,6 @@
 from Character import Character
 from roll_modifier import roll_modifier
+from attack import attack
 
 def test_character():
     assert Character != None
@@ -148,5 +149,17 @@ def test_roll_modifier19():
 def test_roll_modifier20():
     assert roll_modifier(20) == 5
     
-
+def test_attack():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    roll = 20
+    Morgan = Character('Morgan', 'Good', ability_scores)
+    Keith = Character('Keith', 'Evil', ability_scores)
+    attack(Morgan, Keith, roll)
+    assert Keith.hit_points == 9
 

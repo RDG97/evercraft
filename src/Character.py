@@ -1,6 +1,5 @@
 class Character:
     strength = 10
-    # strength_mod = strength + mod
     dexterity = 10
     constitution = 10
     wisdom = 10
