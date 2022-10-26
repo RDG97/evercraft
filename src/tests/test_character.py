@@ -157,9 +157,9 @@ def test_attack():
     intelligence = 10
     charisma = 10
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
-    roll = 20
+    roll = 10
     Morgan = Character('Morgan', 'Good', ability_scores)
     Keith = Character('Keith', 'Evil', ability_scores)
     attack(Morgan, Keith, roll)
-    assert Keith.hit_points == 9
+    assert Keith.hit_points == 4
 
