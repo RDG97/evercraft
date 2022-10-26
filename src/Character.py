@@ -13,11 +13,10 @@ class Character:
         self.alignment = alignment
         self.attack_points = 1
         self.is_alive = True
-        self.level_number = xp // 1000
+        self.level_number =(xp // 1000)
         self.hit_points = 5 + ((5 + roll_modifier(ability_scores[2])) * self.level_number)
         self.armour_class = 10
         self.ability_scores = ability_scores
-
     def attack(self, target1, target2, roll):
         if roll == 20:
             return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points) * 2))), setattr(target1, 'xp', + 10)
