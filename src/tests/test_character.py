@@ -43,7 +43,7 @@ def test_character_hit_points():
     charisma = 10
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     character = Character(name, alignment, ability_scores)
-    assert character.hit_points > 0
+    assert (getattr(character, 'hit_points')) == 5
 
 def test_character_attack_points():
     name = 'Ryan'
@@ -160,6 +160,7 @@ def test_attack():
     roll = 10
     Morgan = Character('Morgan', 'Good', ability_scores)
     Keith = Character('Keith', 'Evil', ability_scores)
-    attack(Morgan, Keith, roll)
-    assert Keith.hit_points == 4
+    attack_value = attack(Morgan, Keith, roll)
+    setattr(Keith, 'hit_points', attack_value)
+    assert getattr(Keith, 'hit_points') == 4
 
