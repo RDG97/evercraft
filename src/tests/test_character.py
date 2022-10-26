@@ -164,3 +164,41 @@ def test_attack():
     setattr(Keith, 'hit_points', attack_value)
     assert getattr(Keith, 'hit_points') == 4
 
+def test_character_attack_crit():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    attacker = Character('morgan', 'good', ability_scores)
+    defender = Character('keith', 'evil', ability_scores)
+    attacker.attack(attacker, defender, 20)
+    assert getattr(defender, 'hit_points') == 3
+
+def test_character_attack():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    attacker = Character('morgan', 'good', ability_scores)
+    defender = Character('keith', 'evil', ability_scores)
+    attacker.attack(attacker, defender, 13)
+    assert getattr(defender, 'hit_points') == 4
+
+def test_xp_growth():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    attacker = Character('morgan', 'good', ability_scores)
+    defender = Character('keith', 'evil', ability_scores)
+    attacker.attack(attacker, defender, 13)
+    assert getattr(attacker, 'xp') == 10

@@ -5,4 +5,3 @@ def attack(target1, target2, roll):
         return int(target2.hit_points) - int(target1.attack_points)
     elif roll == 0:
         print('you really suck')
-
