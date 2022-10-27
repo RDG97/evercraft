@@ -14,3 +14,31 @@ class Fighter(Character):
         self.attack_roll_mod = 0 + int(self.level_number)
         self.hit_points = 5 + ((10 + roll_modifier(ability_scores[2])) * self.level_number)
         
+class Butcher(Character):
+    def __init__(self, Name, alignment, ability_scores, xp):
+        strength = 12#foo class changed default value(10) by: +2
+        dexterity = 12#foo class changed default value(10) by: +2
+        constitution = 11#foo class changed default value(10) by: +1 
+        wisdom = 7#foo class changed default value(10) by: -3
+        intelligence = 7#foo class changed default value(10) by: 
+        charisma = 6#foo class changed default value(10) by: +2
+        xp = 1000
+        ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+        super().__init__(Name, alignment, ability_scores, xp)
+    def smoked_butt(self, target1, target2, roll):
+        roll = int(roll + self.attack_roll_mod)
+        if roll >= 20:
+            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points) * 2))), setattr(target1, 'xp', self.xp + 10)
+        elif roll < 20 and roll > 1:
+            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points)))), setattr(target1, 'xp', self.xp + 10)
+        elif roll == 1:
+            print('you really suck')
+    def bone_breaker(self, target1, target2, roll):
+        roll = int(roll + self.attack_roll_mod)
+        if roll >= 20:
+            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points + 2) * 2))), setattr(target1, 'xp', self.xp + 10)
+        elif roll < 20 and roll > 1:
+            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points + 2)))), setattr(target1, 'xp', self.xp + 10)
+        elif roll == 1:
+            print('you really suck')
+
