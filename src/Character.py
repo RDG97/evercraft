@@ -21,9 +21,12 @@ class Character:
         self.attack_roll_mod = 0 + int(self.level_number // 2)
     def attack(self, target1, target2, roll):
         roll = int(roll + self.attack_roll_mod)
-        if roll >= 20:
-            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points) * 2))), setattr(target1, 'xp', self.xp + 10)
-        elif roll < 20 and roll > 1:
-            return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points)))), setattr(target1, 'xp', self.xp + 10)
-        elif roll == 1:
-            print('you really suck')
+        if target2.hit_points > 0:
+            if roll >= 20:
+                return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points) * 2))), setattr(target1, 'xp', self.xp + 10)
+            elif roll < 20 and roll > 1:
+                return setattr(target2, 'hit_points', (int(target2.hit_points) - (int(target1.attack_points)))), setattr(target1, 'xp', self.xp + 10)
+            elif roll == 1:
+                return print('you really suck')
+        else: return setattr(target2, 'is_alive', False)
+

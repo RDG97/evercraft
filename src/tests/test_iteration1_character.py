@@ -301,3 +301,19 @@ def test_attack_points_after_leveling():
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     thiccboy = Character('Tyler', 'TheThickening', ability_scores, xp)
     assert thiccboy.attack_roll_mod == 2
+
+def test_are_we_mortal():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 4000
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    thiccboy = Character('Tyler', 'TheThickening', ability_scores, xp)
+    Ryan = Character('ryan', 'the good guy', ability_scores, xp)
+    setattr(thiccboy, 'hit_points', 1)
+    Ryan.attack(Ryan, thiccboy, 15)#1
+    Ryan.attack(Ryan, thiccboy, 15)#2
+    assert thiccboy.is_alive == False
