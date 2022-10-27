@@ -212,7 +212,7 @@ def test_character_attack_nat0():
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     Flying_Dutchman = Character('Flying Dutchman', 'The Black Pearl', ability_scores, xp)
     Spongebob = Character('Spongebob', 'The Crusty Crab', ability_scores, xp)
-    Flying_Dutchman.attack(Flying_Dutchman, Spongebob, 0)
+    Flying_Dutchman.attack(Flying_Dutchman, Spongebob, 1)
     assert Spongebob.hit_points == 10
 
 def test_xp_growth():
