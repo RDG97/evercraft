@@ -5,7 +5,7 @@ from attack import attack
 def test_character():
     assert Character != None
 
-def test_character_attribute():
+def test_character_attributes():
     name = 'Ryan'
     alignment = 'good man'
     strength = 10
@@ -32,7 +32,21 @@ def test_character_alignment():
     xp = 1000
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     character = Character(name, alignment, ability_scores, xp)
-    assert character.alignment != None
+    assert character.alignment == 'good'
+
+def test_character_alignment():
+    name = 'Ryan'
+    alignment = 'spurs'
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 1000
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    Ryan = Character(name, alignment, ability_scores, xp)
+    assert Ryan.alignment == 'spurs'
 
 def test_character_hit_points():
     name = 'Ryan'
@@ -77,6 +91,20 @@ def test_is_alive():
     assert character.is_alive == True
 
 def test_xp():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 1000
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    WeirdAl = Character('WeirdAl', 'good', ability_scores, xp)
+    NormalAl = Character('NormalAl', 'evil', ability_scores, xp)
+    WeirdAl.attack(WeirdAl, NormalAl, 20)
+    assert WeirdAl.xp == 1010
+
+def test_armour_amount():
     name = 'Ryan'
     alignment = 'good'
     strength = 10
@@ -88,21 +116,7 @@ def test_xp():
     xp = 1000
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     character = Character(name, alignment, ability_scores, xp)
-    assert character.xp >= 0
-
-def test_armour_class():
-    name = 'Ryan'
-    alignment = 'good'
-    strength = 10
-    dexterity = 10
-    constitution = 10
-    wisdom = 10
-    intelligence = 10
-    charisma = 10
-    xp = 1000
-    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
-    character = Character(name, alignment, ability_scores)
-    assert character.armour_class > 0
+    assert character.armour_class == 10
 
 def test_armour_class():
     name = 'Ryan'
@@ -182,12 +196,12 @@ def test_character_attack_crit():
     charisma = 10
     xp = 1000
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
-    attacker = Character('morgan', 'good', ability_scores, xp)
-    defender = Character('keith', 'evil', ability_scores, xp)
-    attacker.attack(attacker, defender, 20)
-    assert getattr(defender, 'hit_points') == 8
+    WeirdAl = Character('WeirdAl', 'good', ability_scores, xp)
+    NormalAl = Character('NormalAl', 'evil', ability_scores, xp)
+    WeirdAl.attack(WeirdAl, NormalAl, 20)
+    assert getattr(NormalAl, 'hit_points') == 8
 
-def test_character_attack():
+def test_character_attack_nat0():
     strength = 10
     dexterity = 10
     constitution = 10
@@ -196,10 +210,10 @@ def test_character_attack():
     charisma = 10
     xp = 1000
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
-    attacker = Character('morgan', 'good', ability_scores, xp)
-    defender = Character('keith', 'evil', ability_scores, xp)
-    attacker.attack(attacker, defender, 13)
-    assert getattr(defender, 'hit_points') == 9
+    Flying_Dutchman = Character('Flying Dutchman', 'The Black Pearl', ability_scores, xp)
+    Spongebob = Character('Spongebob', 'The Crusty Crab', ability_scores, xp)
+    Flying_Dutchman.attack(Flying_Dutchman, Spongebob, 0)
+    assert Spongebob.hit_points == 10
 
 def test_xp_growth():
     strength = 10
@@ -213,7 +227,7 @@ def test_xp_growth():
     attacker = Character('morgan', 'good', ability_scores, xp)
     defender = Character('keith', 'evil', ability_scores, xp)
     attacker.attack(attacker, defender, 13)
-    assert getattr(attacker, 'xp') == 10
+    assert getattr(attacker, 'xp') == 1010
 
 def test_level():
     strength = 10
@@ -240,6 +254,18 @@ def test_level():
     yomom = Character('Fatty', 'Food', ability_scores, xp)
     assert getattr(yomom, 'level_number') == 2
 
+def test_level():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 4500
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    yomom = Character('Fatty', 'Food', ability_scores, xp)
+    assert yomom.level_number == 4
+
 def test_level_modification():
     strength = 10
     dexterity = 10
@@ -252,15 +278,26 @@ def test_level_modification():
     jerkFace = Character('Ryan', 'Cajun', ability_scores, xp)
     assert getattr(jerkFace, 'hit_points') == 15# character = level_up(character)
 
-def test_attack_mod():
+def test_hit_point_level_modification():
     strength = 10
     dexterity = 10
     constitution = 10
     wisdom = 10
     intelligence = 10
     charisma = 10
-    xp = 0
+    xp = 5000
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    Zit_face = Character('Zit', 'Proactive', ability_scores, xp)
+    assert Zit_face.hit_points == 30
+
+def test_attack_points_after_leveling():
+    strength = 10
+    dexterity = 10
+    constitution = 10
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 4000
     ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
     thiccboy = Character('Tyler', 'TheThickening', ability_scores, xp)
-    attackModder(thiccboy)
-    assert thiccboy.attack_roll_mod == 1
+    assert thiccboy.attack_roll_mod == 2
