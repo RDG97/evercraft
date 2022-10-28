@@ -128,3 +128,16 @@ def test_senior_dev_forloop_normie():
     Michael_McGraw = Character('Michael McGraw', 'Oreos', ability_scores, xp)
     Josh_Stewart.for_loop(Josh_Stewart, Michael_McGraw, 10)
     Michael_McGraw.hit_points == 7
+
+def test_fighters_attribute_change():
+    strength = 10
+    dexterity = 10
+    constitution = 10 
+    wisdom = 10
+    intelligence = 10
+    charisma = 10
+    xp = 1000
+    ability_scores = [strength, dexterity, constitution, wisdom, intelligence, charisma]
+    Daniel = senior_javascript_dev('Dan The Hydrated', 'Chaotic Evil', ability_scores, xp)
+    Mason = Butcher('BellowingButcher', 'The White', ability_scores, xp)
+    
